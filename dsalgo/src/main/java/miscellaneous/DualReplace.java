@@ -25,6 +25,22 @@ public class DualReplace {
 
     */
 
+    /* Use a StringBuilder for concatenating strings rather than concatenating individual Strings directly
+
+       Eg.,
+       String sentence = "";
+       for(String word : words){
+            sentence += word;
+       }
+
+       For every concatenation, a new copy of the string is created and then the both the words are added char by char.
+       Intuitively itself it looks like an inefficient operation.
+       First concat  - x characeters in word
+       Second concat - 2x chacracters for both words
+       and so on.. for n words
+       Time Consumed - O(x + 2x + 3x .... nx) --> O((x(n^2))
+
+       StringBuilder just creates a resizable array, so theres no copying for every concatenation
 
     /* Time Complexity - o(N^2)
        Traversing through the input string repeatedly - This is the repeated work which can be optimised. But how? Using HashMaps?*/
