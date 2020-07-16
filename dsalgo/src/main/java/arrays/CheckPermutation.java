@@ -15,6 +15,7 @@ public class CheckPermutation {
           For this problem unnecessarily take too much unintended time
        2. Sort both the strings - O(N*logN)
        3. Create a countMap of both the strings and check if they are the same  - Most efficient
+       4. Can do step 3 with only a single countMap
     */
 
     /* O(N*logN) */
@@ -64,22 +65,22 @@ public class CheckPermutation {
     /* O(N) using countValue - single count map */
     private static boolean checkPermutationWithSingleCount(String input1, String input2){
 
-        /* Assuming string has only alphabets a-z */
-        int[] countMap = new int[26];
+        /* Assuming string has only ASCII characters  (0-127) */
+        int[] countMap = new int[128];
 
         /* Can add another base case */
         if(input1.length() != input2.length()){
             return false;
         }
 
-        for(char c : input1.toLowerCase().toCharArray()){
-            int charIndex = c - 'a';
-            countMap[charIndex]++;
+        for(char c : input1.toCharArray()){
+            int c_int = (int) c;
+            countMap[c_int]++;
         }
 
-        for(char c : input2.toLowerCase().toCharArray()){
-            int charIndex = c - 'a';
-            countMap[charIndex]--;
+        for(char c : input2.toCharArray()){
+            int c_int = (int) c;
+            countMap[c_int]--;
         }
 
         for (int charCount : countMap) {
@@ -121,7 +122,7 @@ public class CheckPermutation {
     public static void main(String[] args) {
 
         String caseOneInputOne = "IsThisReal";
-        String caseOneInputTwo = "TihsSiaeRl";
+        String caseOneInputTwo = "TihssIaeRl";
 
         String caseTwoInputOne = "KuchBhiLikhDe";
         String caseTwoInputTwo = "LiterallyKuchBhi";
@@ -137,7 +138,6 @@ public class CheckPermutation {
 
         assertTrue(checkPermutationUsingRecursion("1234", "4231"));
         assertFalse(checkPermutationUsingRecursion("315", "134"));
-
 
     }
 }
