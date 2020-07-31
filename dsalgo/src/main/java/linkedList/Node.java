@@ -12,6 +12,11 @@ public class Node {
         this.next = null;
     }
 
+    Node(int value, Node next) {
+        this.value = value;
+        this.next = next;
+    }
+
     int getValue() {
         return value;
     }
@@ -71,6 +76,24 @@ public class Node {
             }
             curr = curr.next;
         }
+    }
+
+    int length(){
+
+        Node curr = this;
+        int length = 0;
+
+        while(curr != null){
+            length = length+1;
+            curr = curr.next;
+        }
+
+        return length;
+    }
+
+    @Override
+    public String toString(){
+        return String.valueOf(this.getValue());
     }
 
 }
